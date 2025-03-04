@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import math
 
-similarity_tab, grouping_tab = st.tabs(["Similarity Analysis", "Elements Grouping"])
+similarity_tab, grouping_tab, type_tab = st.tabs(["Similarity Analysis", "Elements Grouping", "Type Assignment"])
 
 with similarity_tab:
 
@@ -58,10 +58,24 @@ with grouping_tab:
         return df
 
     df = load_data()
-    selected_value = st.selectbox("Select an element from Column 1:", df["element"].unique())
+    selected_value = st.selectbox("Select an element:", df["element"].unique())
 
     matching_values = df[df["element"] == selected_value]["members"].iloc[0].split(', ')
 
     st.write("Members")
+    for value in matching_values:
+        st.write(value)
+with type_tab:
+    @st.cache_data
+    def load_data():
+        df = pd.read_csv("data/type.csv")
+        return df
+
+    df = load_data()
+    selected_value = st.selectbox("Select an element:", df["element"].unique())
+
+    matching_values = df[df["element"] == selected_value]["type"].iloc[0].split(', ')
+
+    st.write("Type")
     for value in matching_values:
         st.write(value)
