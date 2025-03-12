@@ -15,7 +15,6 @@ with similarity_tab:
 
     st.sidebar.markdown('[📥 Download Sample File](https://drive.usercontent.google.com/u/0/uc?id=1_tCrqSZ0Vu4HsB7Qd9rF9FE0JzDv2RUI&export=download)', unsafe_allow_html=True)
 
-
     if uploaded_file:
         df_sim = pd.read_csv(uploaded_file, index_col=0)
         elements_list = df_sim.index.tolist()
@@ -73,9 +72,12 @@ with type_tab:
 
     df = load_data()
     selected_value = st.selectbox("Select an element:", df["element"].unique())
+    matching_row = df[df["element"] == selected_value].iloc[0]
 
-    matching_values = df[df["element"] == selected_value]["type"].iloc[0].split(', ')
+    matching_type = matching_row["type"]
+    matching_confidence = matching_row["confidence"]
 
     st.write("Type")
-    for value in matching_values:
-        st.write(value)
+    st.write(f"{matching_type}")
+    st.write("Confidence")
+    st.write(f"{matching_confidence:.2f}%")
