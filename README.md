@@ -29,7 +29,7 @@ pip install streamlit pandas seaborn matplotlib
 
 1. **Run the app**:
    ```bash
-   streamlit run dashboard.py
+   streamlit run streamlit_dashboard.py
    ```
 2. **Upload Data**:
    - Upload a CSV file containing a similarity matrix.
