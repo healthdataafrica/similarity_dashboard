@@ -53,7 +53,3 @@ pip install streamlit pandas seaborn matplotlib
 
 - The app caches uploaded and sample data for efficiency.
 - If issues arise with file loading, ensure the CSV file is correctly formatted.
-
-## License
-
-This project is licensed under the MIT License.
